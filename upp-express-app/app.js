@@ -1,6 +1,9 @@
 const express = require('express')
 const app = express()
 
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json({ extended: true }))
+
 const paymentRoutes = require('./controllers/payment')
 app.use('/payment', paymentRoutes)
 
