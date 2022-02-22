@@ -1,15 +1,23 @@
-const express = require('express')
-const app = express()
+const express = require("express");
+var cors = require("cors");
 
-app.use(express.urlencoded({ extended: true }))
-app.use(express.json({ extended: true }))
+const app = express();
 
-const paymentRoutes = require('./controllers/payment')
-app.use('/payment', paymentRoutes)
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ extended: true }));
+app.use(cors());
+const paymentRoutes = require("./controllers/payment");
+app.use("/payment", paymentRoutes);
 
-app.get('/', (req, res) => {
-    res.send('Hello')
-})
+const cvRoutes = require("./controllers/upload");
+app.use("/cv", cvRoutes);
 
-const PORT = process.env.PORT || 3000
-app.listen(PORT)
+const statRoutes = require("./controllers/statistic");
+app.use("/statistic", statRoutes);
+
+app.get("/", (req, res) => {
+  res.send("Hello");
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT);
