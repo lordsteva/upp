@@ -6,6 +6,7 @@ const fs = require("fs");
 router.post("/upload", (req, res) => {
   const name = uuidv4();
   req.pipe(fs.createWriteStream(`./${name}.pdf`));
+  console.log('document uploaded')
   res.status(200).json({ id: name });
 });
 router.get("/download/:id", (req, res) => {
